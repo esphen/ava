@@ -21,7 +21,7 @@ function getBabelOptions() {
 
 const babelCacheKeys = {};
 
-sinon.spy(babel, 'transform');
+sinon.spy((babel.transform, babel), 'transform');
 
 test('creation with new', t => {
 	const tempDir = uniqueTempDir();
