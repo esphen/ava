@@ -9,6 +9,8 @@ const report = require('../helper/report');
 const TapReporter = require('../../lib/reporters/tap');
 
 const run = type => t => {
+	t.plan(1);
+
 	const logFile = path.join(__dirname, `tap.${type.toLowerCase()}.log`);
 
 	const tty = new TTYStream({

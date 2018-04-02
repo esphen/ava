@@ -48,7 +48,16 @@ exports.assert = (t, logFile, buffer, stripOptions) => {
 	if (stripOptions.stripStdIO && !hasReliableStdIO) {
 		expected = expected.replace(/(---tty-stream-chunk-separator\n)(stderr|stdout)\n/g, stripOptions.alsoStripSeparator ? '' : '$1');
 	}
-	t.is(buffer.toString('utf8'), expected);
+
+	const actual = buffer.toString('utf8');
+	if (actual === expected) {
+		t.pass();
+	} else {
+		// Log the entire actual and expected values, so they can be diffed
+		// manually. TAP's diff output is really confusing in this situation.
+		console.dir({actual, expected});
+		t.fail('Output did not match expectation');
+	}
 };
 
 exports.sanitizers = {

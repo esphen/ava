@@ -9,6 +9,8 @@ const report = require('../helper/report');
 const VerboseReporter = require('../../lib/reporters/verbose');
 
 const run = type => t => {
+	t.plan(1);
+
 	const logFile = path.join(__dirname, `verbose.${type.toLowerCase()}.log`);
 
 	const tty = new TTYStream({

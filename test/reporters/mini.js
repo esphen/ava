@@ -9,6 +9,8 @@ const report = require('../helper/report');
 const MiniReporter = require('../../lib/reporters/mini');
 
 const run = type => t => {
+	t.plan(1);
+
 	const logFile = path.join(__dirname, `mini.${type.toLowerCase()}.log`);
 
 	const tty = new TTYStream({
